@@ -17,8 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: rustup update ${{ matrix.toolchain }} && rustup default ${{ matrix.toolchain }}
-      - run: cargo build --verbose
-      - run: cargo install --path . --force
+      - run: cargo install --path . --force --verbose
       - run: nt --help
       - run: nt --version
 
