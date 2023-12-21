@@ -1,5 +1,7 @@
 # nt
 
+[![Cargo Build & Test](https://github.com/kojix2/nt/actions/workflows/ci.yml/badge.svg)](https://github.com/kojix2/nt/actions/workflows/ci.yml)
+
 `nt` is a tool that runs your command and then sends a desktop notification.
 
 ## Installation
