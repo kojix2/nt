@@ -1,35 +1,28 @@
-use getopts::Options;
 use notify_rust::Notification;
-use std::env;
 use std::error::Error;
 use std::process::{exit, Command, Stdio};
 use std::time::Instant;
 
 fn main() -> Result<(), Box<dyn Error>> {
     // Get command line arguments
-    let args: Vec<String> = env::args().collect();
-    let mut opts = Options::new();
-    opts.optflag("h", "help", "print this help menu");
-    opts.optflag("v", "version", "show version info");
+    let args: Vec<String> = std::env::args().collect();
 
     if args.len() <= 1 {
-        print_usage(&args[0], &opts, true);
+        eprintln!("Usage: {} [options] <command>", args[0]);
         exit(1);
     }
 
-    let matches = opts.parse(&args[1..])?;
-
-    if matches.opt_present("h") {
-        print_usage(&args[0], &opts, false);
-        return Ok(());
-    }
-
-    if matches.opt_present("v") {
-        println!("version 0.1.0");
-        return Ok(());
-    }
-
-    let command = matches.free.join(" ");
+    let command = match args[1].as_str() {
+        "-h" | "--help" => {
+            println!("Usage: {} [options] <command>", args[0]);
+            return Ok(());
+        }
+        "-v" | "--version" => {
+            println!("version 0.1.0");
+            return Ok(());
+        }
+        _ => args[1..].join(" "),
+    };
 
     // Time the command execution
     let start = Instant::now();
@@ -58,14 +51,4 @@ fn main() -> Result<(), Box<dyn Error>> {
             .show()?; // propagate error with `?`
     }
     Ok(())
-}
-
-fn print_usage(program: &str, opts: &Options, eprint: bool) {
-    let brief = format!("Usage: {} [options] <command>", program);
-    let usage_string = opts.usage(&brief);
-    if eprint {
-        eprintln!("{}", usage_string);
-    } else {
-        println!("{}", usage_string);
-    }
 }
