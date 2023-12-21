@@ -6,6 +6,11 @@ use std::time::Instant;
 fn main() -> std::io::Result<()> {
     // Grab the command-line arguments and concatenate them into a
     // space-separated string
+    let args: Vec<String> = env::args().collect();
+    if args.len() < 2 {
+        eprintln!("Usage: {} <command>", args[0]);
+        std::process::exit(1);
+    }
     let command = env::args().skip(1).collect::<Vec<String>>().join(" ");
 
     // Measure the time of the command execution
