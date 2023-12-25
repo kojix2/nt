@@ -7,7 +7,10 @@ on:
 jobs:
   build_and_test:
     name: Rust project - latest
-    runs-on: ubuntu-latest
+    runs-on:
+      - ubuntu-latest
+      - macos-latest
+      - windows-latest
     strategy:
       matrix:
         toolchain:
@@ -20,4 +23,3 @@ jobs:
       - run: cargo install --path . --force --verbose
       - run: nt --help
       - run: nt --version
-
