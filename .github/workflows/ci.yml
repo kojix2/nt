@@ -15,8 +15,6 @@ jobs:
           - macos
           - windows
         toolchain:
-          - stable
-          - beta
           - nightly
     steps:
       - uses: actions/checkout@v3
