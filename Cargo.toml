@@ -1,7 +1,14 @@
 [package]
-name = "nt"
+name = "nt-cli"
 version = "0.1.0"
+authors = ["kojix2 <2xijok@gmail.com>"]
+license = "MIT"
+description = "A tool to notify the completion of a command."
+readme = "README.md"
+homepage = "https://github.com/kojix2/nt"
+keywords = ["cli", "notify"]
 edition = "2021"
+categories = ["command-line-utilities"]
 
 [dependencies]
 notify-rust = "4"
