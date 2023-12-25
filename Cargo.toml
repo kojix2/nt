@@ -1,7 +1,5 @@
-cargo-features = ["different-binary-name"]
-
 [package]
-name = "nt-cli"
+name = "nt"
 version = "0.1.0"
 authors = ["kojix2 <2xijok@gmail.com>"]
 license = "MIT"
@@ -11,10 +9,6 @@ homepage = "https://github.com/kojix2/nt"
 keywords = ["cli", "notify"]
 edition = "2021"
 categories = ["command-line-utilities"]
-
-[[bin]]
-name = "nt-cli"
-filename = "nt"
 
 [dependencies]
 notify-rust = "4"
