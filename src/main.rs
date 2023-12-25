@@ -37,7 +37,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     #[cfg(not(target_os = "windows"))]
     let default_shell = std::env::var("SHELL").unwrap_or_else(|_| "sh".to_string());
-
+    #[cfg(not(target_os = "windows"))]
     let mut child = Command::new(default_shell)
         .arg("-c")
         .arg(&command)

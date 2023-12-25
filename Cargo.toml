@@ -10,5 +10,9 @@ keywords = ["cli", "notify"]
 edition = "2021"
 categories = ["command-line-utilities"]
 
+[[bin]]
+name = "nt-cli"
+filename = "nt"
+
 [dependencies]
 notify-rust = "4"
