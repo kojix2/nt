@@ -26,7 +26,19 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     // Time the command execution
     let start = Instant::now();
-    let mut child = Command::new("sh")
+    #[cfg(target_os = "windows")]
+    let mut child = Command::new("cmd")
+        .arg("/C")
+        .arg(&command)
+        .stdin(Stdio::inherit())
+        .stdout(Stdio::inherit())
+        .stderr(Stdio::inherit())
+        .spawn()?;
+
+    #[cfg(not(target_os = "windows"))]
+    let default_shell = std::env::var("SHELL").unwrap_or_else(|_| "sh".to_string());
+
+    let mut child = Command::new(default_shell)
         .arg("-c")
         .arg(&command)
         .stdin(Stdio::inherit())
