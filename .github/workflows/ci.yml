@@ -18,7 +18,7 @@ jobs:
           - stable
           - nightly
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: rustup update ${{ matrix.toolchain }} && rustup default ${{ matrix.toolchain }}
       - run: cargo install --path . --force --verbose
       - run: nt --help
